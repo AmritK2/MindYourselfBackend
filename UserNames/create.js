@@ -19,14 +19,18 @@ module.exports.create = (event, context, callback) => {
     };
 
     dynamoDb.put(params, (error, result) => {
-        if (error){
-             console.error(error);
-            callback (new Error ('Couldn\'t create the username item.'));
+        if (error) {
+            console.error(error);
+            callback(new Error('Couldn\'t create the username item.'));
             return;
         }
 
         const response = {
             statusCode: 200,
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Credentials": true,
+            },
             body: JSON.stringify(result.Item)
         };
         callback(null, response);

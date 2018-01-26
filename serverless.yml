@@ -44,3 +44,13 @@ functions:
           path: users
           method: post
           cors: true
+
+  getUser:
+    handler: UserNames/getUser.getUser
+    memorySize: 128
+    description: ""
+    events:
+      - http:
+          path: users/{id}
+          method: get
+          cors: true
